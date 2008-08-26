@@ -95,6 +95,7 @@ class PageObjectsController < ApplicationController
 
   protected
     def find_customers
+      logger.debug "Page Object Organization: #{@page_object.organization_uid.inspect}"
       @customers = @page_object.organization.find_data(:customers, :include => [:name, :url])
     end
 end
