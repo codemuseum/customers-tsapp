@@ -2,6 +2,8 @@ class CreatePageObjects < ActiveRecord::Migration
   def self.up
     create_table :page_objects do |t|
       t.string :urn
+      t.text :excludes
+      t.string :header
 
       t.timestamps
     end

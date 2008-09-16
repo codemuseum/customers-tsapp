@@ -1,8 +1,6 @@
 <div class="customers" id="customers">
-  <h2>Customers</h2>
-  <% @customers.each do |customer| -%>
-    <div class="customer">
-      <%=link_to customer.name, customer.url %>
-    </div>
-  <% end -%>
+  <h2><%= @page_object.header %></h2>
+  <%= render :partial => 'customer', :collection => @customers %>
 </div>
+
+<% stylesheets 'customers' %>

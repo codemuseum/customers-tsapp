@@ -1,3 +1,29 @@
+<div class="customers" id="customers">
 <% fields_for_page_object do |f| -%>
-  A list of customers will be displayed here.
+  <%= f.hidden_field :piped_excludes, :class => 'piped-excludes' %>
+  <h2><%= f.label :header %> <%= f.text_field :header %></h2>
+  
+  <div class="customer-tabs">
+    <ul class="tabs">
+      <li class="default">
+        <a>Customers</a>
+      </li>
+      <li>
+        <a>Excluded Customers</a>
+      </li>
+    </ul>
+  
+    <div class="tab">
+      <%= render :partial => 'customer', :collection => @customers, :locals => {:edit_mode => true} %>
+    </div>
+
+    <div class="tab">
+      <%= render :partial => 'customer', :collection => @excluded_customers, :locals => {:edit_mode => true, :exclude_mode => true} %>
+    </div>
+  </div>
+
 <% end -%>
+</div>
+
+<% stylesheets 'customers', 'customers-edit' %>
+<% javascripts 'prototype', 'effects', 'assets', 'customers-edit' %>

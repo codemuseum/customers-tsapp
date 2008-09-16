@@ -1,0 +1,12 @@
+<%# Takes optional :edit_mode = false to display edit mode fields, like ID.  Also, optionally send in exclude_mode to indicate that these are excluded items-%>
+<% edit_mode = false if local_assigns[:edit_mode].nil? -%>
+<% exclude_mode = false if local_assigns[:exclude_mode].nil? -%>
+<div class="customer"<%= " id=\"app_customers_list_#{customer.uid}\"" if edit_mode %>>
+  <% if edit_mode -%>
+    <% if exclude_mode %><div class="remove ts-close-button"><a title="Exclude this customer from being shown.">Exclude</a></div>
+    <% else %><div class="remove ts-close-button"><a title="Stop excluding this customer from being shown.">Stop Excluding</a></div>
+    <% end %>
+  <% end -%>
+  <%= link_to image_tag("#{WEBSNAPR_URL}&url=#{customer.url}", :width => 202, :height => 152, :alt => "#{customer.name} Site Thumbnail"), customer.url %>
+  <%=link_to customer.name, customer.url %>
+</div>

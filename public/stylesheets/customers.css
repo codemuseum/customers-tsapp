@@ -1,0 +1,2 @@
+.app-customers-list .customers { width:auto; margin-left:auto; margin-right: auto;overflow:auto; }
+.app-customers-list .customer { width: 202px; height:176px; font-size:83%; overflow:hidden; text-align:center; margin:10px; float:left;}

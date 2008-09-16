@@ -1,7 +1,8 @@
 class PageObjectsController < ApplicationController
   include PageObjectsControllerHelper
   before_filter :find_page_object, :only => [ :show, :edit, :update, :destroy, :update_valid ]
-  before_filter :find_customers, :only => [:show, :edit]
+  before_filter :find_customers, :only => [:show, :edit, :update_valid]
+  before_filter :find_excluded_customers, :only => [:edit, :update_valid]
 
   # GET /page_objects
   # GET /page_objects.xml
@@ -94,8 +95,10 @@ class PageObjectsController < ApplicationController
   end
 
   protected
+    def find_excluded_customers
+      @excluded_customers = @page_object.organization.find_data(:customers, :include => [:id, :name, :url], :only => @page_object.excludes)
+    end
     def find_customers
-      logger.debug "Page Object Organization: #{@page_object.organization_uid.inspect}"
-      @customers = @page_object.organization.find_data(:customers, :include => [:name, :url])
+      @customers = @page_object.organization.find_data(:customers, :include => [:id, :name, :url], :excluding => @page_object.excludes)
     end
 end
