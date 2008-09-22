@@ -66,4 +66,3 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 end
 
-WEBSNAPR_URL = "http://images.websnapr.com/?key=mvjezQ7ceRo3&size=S"

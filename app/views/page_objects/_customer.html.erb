@@ -7,6 +7,6 @@
     <% else %><div class="remove ts-close-button"><a title="Stop excluding this customer from being shown.">Stop Excluding</a></div>
     <% end %>
   <% end -%>
-  <%= link_to image_tag("#{WEBSNAPR_URL}&url=#{customer.url}", :width => 202, :height => 152, :alt => "#{customer.name} Site Thumbnail"), customer.url %>
+  <%= link_to image_tag(screenshot_url(customer.url), :width => 202, :height => 152, :alt => "#{customer.name} Site Thumbnail"), customer.url %>
   <%=link_to customer.name, customer.url %>
 </div>

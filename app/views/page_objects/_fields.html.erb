@@ -14,11 +14,11 @@
     </ul>
   
     <div class="tab">
-      <%= render :partial => 'customer', :collection => @customers, :locals => {:edit_mode => true} %>
+      <%= render :partial => 'customer', :collection => @customers, :locals => {:edit_mode => true, :exclude_mode => true} %>
     </div>
 
     <div class="tab">
-      <%= render :partial => 'customer', :collection => @excluded_customers, :locals => {:edit_mode => true, :exclude_mode => true} %>
+      <%= render :partial => 'customer', :collection => @excluded_customers, :locals => {:edit_mode => true, :exclude_mode => false} %>
     </div>
   </div>
 
