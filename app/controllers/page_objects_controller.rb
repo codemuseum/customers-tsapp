@@ -1,6 +1,7 @@
 class PageObjectsController < ApplicationController
   include PageObjectsControllerHelper
-  before_filter :find_page_object, :only => [ :show, :edit, :update, :destroy, :update_valid ]
+  before_filter :find_page_object, :only => [ :show, :edit, :update, :destroy ]
+  before_filter :prepare_page_object_for_clone, :only => [ :duplicate ]
   before_filter :find_customers, :only => [:show, :edit, :update_valid]
   before_filter :find_excluded_customers, :only => [:edit, :update_valid]
 
@@ -65,7 +66,24 @@ class PageObjectsController < ApplicationController
       end
     end
   end
+  
+  # POST /page_objects/duplicate?source=:urn
+  # POST /page_objects/duplicate.xml?source=:urn
+  def duplicate
 
+    respond_to do |format|
+      if @page_object.save
+        flash[:notice] = 'Page Object was successfully created.'
+        format.html { redirect_to(@page_object) }
+        format.xml  { render :xml => @page_object, :status => :created, :location => @page_object }
+      else
+        render_to_page_object
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @page_object, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   # PUT /page_objects/1
   # PUT /page_objects/1.xml
   def update
