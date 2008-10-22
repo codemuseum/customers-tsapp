@@ -1,5 +1,4 @@
 class PageObject < ActiveRecord::Base
-  alias_method :original_to_xml, :to_xml
   include ThriveSmartObjectMethods
   self.caching_default = 'interval[60]'
   
